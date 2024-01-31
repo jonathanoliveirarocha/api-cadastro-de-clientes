@@ -5,7 +5,13 @@ const customerService = {
 
   findOneByCpf: async (cpf) => {},
 
-  findAll: async () => {},
+  findAllInRange: async (start, end) => {
+    const customers = await Customer.find()
+      .skip(start)
+      .limit(end - start);
+
+    return customers;
+  },
 };
 
 module.exports = customerService;
