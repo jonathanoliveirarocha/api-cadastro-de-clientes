@@ -43,6 +43,10 @@ const customerController = {
     const { cpf } = req.body;
 
     try {
+      if(!cpf){
+        return res.status(400).json({ message: "Request missing data or they are empty!" });
+      }
+
       if (!verifyCpf(cpf)) {
         return res.status(422).json({ message: "Invalid CPF!" });
       } 
