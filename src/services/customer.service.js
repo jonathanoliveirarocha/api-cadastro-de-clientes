@@ -1,10 +1,13 @@
 const Customer = require("../models/Customer");
 
 const customerService = {
-  createCustomer: async (customer) => {},
+  createCustomer: async (customer) => {
+    const newCustomer = new Customer(customer);
+    await newCustomer.save();
+  },
 
   findOneByCpf: async (cpf) => {
-    const customer = await Customer.findOne({ cpf: cpf });
+    const customer = await Customer.findOne({ cpf });
     return customer;
   },
 
