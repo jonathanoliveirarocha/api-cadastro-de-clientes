@@ -129,3 +129,27 @@ describe("Testing route /customer/findonebycpf", () => {
     expect(response.status).toBe(200);
   });
 });
+
+describe("Testing route /customer/findallinrange", () => {
+  test("Should return status 200", async () => {
+    const response = await request(app).post("/customer/findallinrange");
+
+    expect(response.status).toBe(200);
+  });
+
+  test("Should return an array with 1 item", async () => {
+    const response = await request(app).post("/customer/findallinrange?end=1");
+
+    expect(response.status).toBe(200);
+    expect(response.body.length).toBe(1);
+  });
+
+  test("Should return an array with 1 item", async () => {
+    const response = await request(app).post(
+      "/customer/findallinrange?start=1&end=2"
+    );
+
+    expect(response.status).toBe(200);
+    expect(response.body.length).toBe(1);
+  });
+});

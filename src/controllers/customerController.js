@@ -59,7 +59,6 @@ const customerController = {
 
       return res.json(customer);
      
-     
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: "An internal error occurred when querying CPF!" });
@@ -67,9 +66,9 @@ const customerController = {
   },
 
   getAllCostumersInRange: async (req, res) => {
-    const start = parseInt(req.query.start) | 0;
-    const end = parseInt(req.query.end) | 9;
-
+    const start = parseInt(req.query.start) || 0;
+    const end = parseInt(req.query.end) || 9;
+    console.log(end)
     try {
       const customers = await customerService.findAllInRange(start, end);
 
